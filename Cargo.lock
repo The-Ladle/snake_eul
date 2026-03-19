@@ -13,4 +13,11 @@ name = "snake_eul"
 version = "0.1.0"
 dependencies = [
  "micromath",
+ "ternary-rs",
 ]
+
+[[package]]
+name = "ternary-rs"
+version = "1.0.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "e61bf72441e3c95a03e7a7c8f4cee2971d451ecaddbc61cf405814d9a4a15631"

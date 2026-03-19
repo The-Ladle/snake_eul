@@ -32,7 +32,6 @@ mod tests {
     fn test_mul_scalar() {
         let vec1 = Vector::new([3.0, 4.0]);
         let scalar = 3.0;
-        
         assert_eq!(vec1 * scalar, Vector::new([9.0, 12.0]));
     }
 }

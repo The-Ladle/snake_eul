@@ -1,8 +1,8 @@
-use core::ops::{Add, Mul, Sub};
+use core::ops::{Add, Div, Mul, Sub};
 use micromath::F32Ext;
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub struct Vector<const N: usize> {
-    data: [f32; N],
+    pub(crate) data: [f32; N],
 }
 
 pub type Vec2 = Vector<2>;
@@ -115,6 +115,18 @@ impl<const N: usize> Add for Vector<N> {
     }
 }
 
+impl<const N: usize> Sub for Vector<N> {
+    type Output = Self;
+
+    fn sub(self, rhs: Self) -> Self::Output {
+        let mut new_vec: [f32; N] = [0.0; N];
+        for i in 0..N {
+            new_vec[i] = self.data[i] - rhs.data[i];
+        }
+        Self::new(new_vec)
+    }
+}
+
 impl<const N: usize> Mul<f32> for Vector<N> {
     type Output = Self;
 
@@ -136,6 +148,18 @@ impl<const N: usize> Mul<Vector<N>> for f32 {
             new_vec[i] = self * rhs.data[i];
         }
         Vector::new(new_vec)
+    }
+}
+
+impl<const N: usize> Div<f32> for Vector<N> {
+    type Output = Self;
+
+    fn div(self, rhs: f32) -> Self::Output {
+        let mut new_vec: [f32; N] = self.data;
+        for i in 0..N {
+            new_vec[i] = self.data[i] / rhs;
+        }
+        Self::new(new_vec)
     }
 }
 
